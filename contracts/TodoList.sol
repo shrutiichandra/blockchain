@@ -14,6 +14,12 @@ contract TodoList{
 
 	mapping(uint => Task) public tasks;
 
+	event TaskCreated(
+		uint id,
+		string content,
+		bool completed
+	);
+
 	constructor() public{
 		///add a default task
 		createTask("hello dude!");
@@ -25,7 +31,7 @@ contract TodoList{
 		tasks[taskCount] = Task(taskCount, _content, false);
 
 		///broadcast an event that task was made
-
+		emit TaskCreated(taskCount, _content, false);
 	}
 
 
